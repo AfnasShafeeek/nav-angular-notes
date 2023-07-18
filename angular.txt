@@ -1,0 +1,182 @@
+Installation of Angular using angular-cli
+
+npm install -g @angular/cli
+
+2  To setup a new project
+
+ng new PROJECT_NAME
+
+
+3 Running The Project Locally
+
+ng serve --o
+
+4 Generating Components
+
+ng g component my-new-component
+
+ng g c my-new-component 
+
+5 Generating Service 
+
+ng g service my-new-service
+
+6 Generating interface 
+
+ng g interface my-new-interface
+
+7 Building production file
+
+ng build --prod
+
+
+8 For Loop
+
+NgFor
+
+<li *ngFor="let item of items; let i = index; trackBy: trackByFn">
+ {{i}} - {{item.name}}
+</li>
+
+index will be set to the current loop iteration for each template context.
+• first will be set to a boolean value indicating whether the item is the first one in the iteration.
+• last will be set to a boolean value indicating whether the item is the last one in the iteration.
+• even will be set to a boolean value indicating whether this item has an even index.
+• odd will be set to a boolean value indicating whether this item has an odd index.
+
+9 Reactive Forms
+
+ usef to cteating forms with some specific functions 
+
+10 <any> 
+use to accept and render any kind of data
+ 
+11  Routing
+
+
+Routing with children
+
+{
+ path: "home",
+ children: [
+ {
+ path: "",
+ component: HomeComponent
+ },
+ {
+ path: "counter",
+ children: [
+ {
+ path: "",
+ component: CounterComponent
+ },
+ {
+ path: "fetch-data",
+ component: FetchDataComponent
+ }
+ ]
+}
+
+
+
+{path: "routename ",component:"<name>"}
+
+
+12 Observables
+
+As a publisher, you create an Observable instance that defines a subscriber function. 
+This is the function that is executed when a consumer calls the subscribe() method. 
+The subscriber function defines how to obtain or generate values or messages to be published.
+
+13 observers
+
+used to track particular element
+
+next - Required. A handler for each delivered value. Called zero or more times after execution starts.
+
+error - Optional. A handler for an error notification. An error halts execution of the observable instance.
+
+complete - Optional. A handler for the execution-complete notification. Delayed values can continue to be delivered to the next handler after execution is complete.
+
+14 Cud
+
+if any null injector error occurs it is due to the absence of purticular module in the app.module 
+
+Create: Creating refers to the process of adding new data to the application's database or storage. In Angular, you can create new records by capturing user input through forms and sending the data to a server using HTTP requests.
+ The server-side code then processes the request and adds the new data to the database.
+
+Read: Reading involves retrieving data from the application's database or storage and displaying it to the user. In Angular, you can fetch data from a server using HTTP requests. Once the data is received, you can bind it to the user interface,
+ such as displaying a list of items or showing detailed information about a specific record.
+
+Update: Updating refers to modifying existing data in the application's database or storage. In Angular, you can update data by capturing user input through forms and sending the modified data to a server using HTTP requests. The server-side code then processes
+ the request and updates the corresponding record in the database.
+
+Delete: Deleting involves removing data from the application's database or storage. In Angular, you can delete data by sending a request to the server with the ID or unique identifier of the record to be deleted.
+ The server-side code then processes the request and removes the corresponding record from the database.
+
+
+
+Create Operation (POST)
+
+import { HttpClient } from '@angular/common/http';
+
+constructor(private http: HttpClient) {}
+
+createItem(item: any) {
+  return this.http.post('api/items', item);
+}
+
+
+
+Read Operation (GET):
+
+import { HttpClient } from '@angular/common/http';
+
+constructor(private http: HttpClient) {}
+
+getItem(itemId: number) {
+  return this.http.get(`api/items/${itemId}`);
+}
+
+getAllItems() {
+  return this.http.get('api/items');
+}
+
+
+
+
+
+Update Operation (PUT):
+
+import { HttpClient } from '@angular/common/http';
+
+constructor(private http: HttpClient) {}
+
+updateItem(itemId: number, updatedItem: any) {
+  return this.http.put(`api/items/${itemId}`, updatedItem);
+}
+
+
+
+
+Delete Operation (DELETE)
+
+
+import { HttpClient } from '@angular/common/http';
+
+constructor(private http: HttpClient) {}
+
+deleteItem(itemId: number) {
+  return this.http.delete(`api/items/${itemId}`);
+}
+
+
+15 Route gaurd
+
+ The primary purpose of a RouteGuard is to determine whether a user is allowed to navigate to a specific route or not. It provides a way to add an extra layer of security or implement custom logic before allowing access to a route.
+
+Implementation: In Angular, a RouteGuard is implemented as a class that implements the CanActivate interface from the Angular Router library. The CanActivate interface requires the implementation of a canActivate() 
+
+canActivate(): The canActivate() method is the core method of a RouteGuard. It is called by the Angular Router when navigating to a route. Developers can implement custom logic inside this method to determine whether to allow access to the route or redirect to another page.
+
+
